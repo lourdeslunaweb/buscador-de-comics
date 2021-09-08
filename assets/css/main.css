@@ -1,0 +1,22 @@
+body {
+  background-color: #bc8ee7; }
+
+.box {
+  margin-top: 10px;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 300px;
+  background-color: chartreuse; }
+  .box.box-blue {
+    box-shadow: 10px 10px 5px 0px rgba(9, 2, 77, 0.75);
+    background-color: blue;
+    width: 100px;
+    justify-content: flex-start; }
+  .box.box-red {
+    box-shadow: 10px 10px 5px 0px rgba(77, 1, 1, 0.75);
+    background-color: red;
+    width: 50px;
+    justify-content: flex-end;
+    margin-left: 10px; }

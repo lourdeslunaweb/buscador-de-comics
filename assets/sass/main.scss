@@ -1,0 +1,40 @@
+@import "./utils/variables";
+@import "./utils/mixins";
+@import "./base/typography";
+@import "./components/buttons";
+@import "./components/carousel";
+@import "./components/cover";
+@import "./pages/index";
+@import "./layout/header";
+@import "./layout/navigation";
+@import "./layout/footer";
+
+
+
+
+body{
+    background-color: rgb(188, 142, 231);
+}
+
+.box{
+    margin-top: 10px;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width: 300px;
+    background-color: chartreuse;
+    &.box-blue{
+        box-shadow: 10px 10px 5px 0px rgba(9, 2, 77, 0.75);
+        background-color: blue;
+        width: 100px;
+        justify-content: flex-start;
+    }
+    &.box-red{
+        box-shadow: 10px 10px 5px 0px rgba(77, 1, 1, 0.75);
+        background-color: red;
+        width: 50px;
+        justify-content: flex-end;
+        margin-left: 10px;
+    }
+}
