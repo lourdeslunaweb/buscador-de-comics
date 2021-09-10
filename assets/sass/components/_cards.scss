@@ -1,10 +1,27 @@
-.card-home {
-    height: 200px;
-    width: 100px;
-    // transition: all 1s;
-    // background-color: yellow;
-    // @include card-transition;
 
+.marvel-cards{
+    @include flex-center;
+    flex-wrap: wrap;
+}
+
+.card-div{
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+    height: 500px;
+    width: 350px;
+    h3{
+        @include card-name;
+    }
+}
+
+.card-home {
+    height: 400px;
+    width: 250px;
+    // margin: $margin-l;
+    box-shadow: $box-shadow;
+    transition: all 0.5s;
+    @include card-transition;
 }
 
 .card-selected {
