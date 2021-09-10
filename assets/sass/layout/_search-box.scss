@@ -1,0 +1,63 @@
+
+.search-container {
+    @include flex-center;
+    @include title;
+    flex-direction: column;
+    height: 14rem;
+    padding: $padding-s;
+
+    // background-color: $tertiary;
+
+    .search-line {
+        height: 6rem;
+        width: 80vw;
+        // background-color: $secondary;
+        padding: $padding-s;
+        border-radius: $border-pill;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center; 
+        @include labels-text;
+        
+        input, select, button {
+            height: 2.5rem;
+            font-size: 1rem;
+            border: 0;
+            border-radius: $border-rounded;
+        }
+        select {
+            padding: 0 0.8rem;
+        }
+        input {
+            width: 30vw;
+            padding: 0 0.8rem;
+        }
+        .search-box {
+            
+        }
+        .type-filter {
+
+
+        }
+        .alphabetic-filter{
+
+        }
+        button {
+            //completar en archivo de buttons
+        }
+    }
+    input {
+
+    }
+    select {
+
+    }
+    button {
+
+    }
+}
+
+.search2 {
+    
+}

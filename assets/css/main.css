@@ -1,25 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,500;1,700&display=swap");
+button {
+  padding: 1rem;
+  background-color: #BA181B;
+  color: #ffffff;
+  border: 0;
+  border-radius: 0.2rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  button:hover {
+    background-color: #E5383B; }
+
+.card-home {
+  height: 200px;
+  width: 100px; }
+
+.carousel {
+  height: 50vh; }
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #161a1d;
+  flex-direction: column;
+  height: 14rem;
+  padding: 1rem; }
+  .search-container .search-line {
+    height: 6rem;
+    width: 80vw;
+    padding: 1rem;
+    border-radius: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.7em;
+    font-weight: 500;
+    color: #161a1d; }
+    .search-container .search-line input, .search-container .search-line select, .search-container .search-line button {
+      height: 2.5rem;
+      font-size: 1rem;
+      border: 0;
+      border-radius: 0.2rem; }
+    .search-container .search-line select {
+      padding: 0 0.8rem; }
+    .search-container .search-line input {
+      width: 30vw;
+      padding: 0 0.8rem; }
+
 p {
   color: #161a1d; }
 
 body {
   background-color: #D3D3D3; }
-
-.box {
-  margin-top: 10px;
-  border-radius: 1em;
-  display: flex;
-  align-items: center;
-  height: 100px;
-  width: 300px; }
-  .box:hover {
-    box-shadow: 1px 13px 19px -6px rgba(22, 26, 29, 0.75);
-    font-weight: bold; }
-  .box.box-blue {
-    background-color: #A4161A;
-    width: 100px;
-    justify-content: flex-start; }
-  .box.box-red {
-    background-color: #BA181B;
-    width: 100px;
-    justify-content: flex-end;
-    margin-left: 10px; }

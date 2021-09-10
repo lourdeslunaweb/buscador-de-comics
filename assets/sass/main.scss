@@ -2,45 +2,23 @@
 @import "./utils/mixins";
 @import "./base/typography";
 @import "./components/buttons";
+@import "./components/cards";
 @import "./components/carousel";
 @import "./components/cover";
 @import "./pages/index";
 @import "./layout/header";
 @import "./layout/navigation";
 @import "./layout/footer";
+@import "./layout/search-box";
+
 
 p{
-    color: #161a1d
+    color: $tertiary;
 }
-
-
 
 body{
     background-color: $primary;
 }
 
-.box{
-    margin-top: 10px;
-    border-radius: 1em;
-    display: flex;
-    align-items: center;
-    height: 100px;
-    width: 300px;
-    &:hover {
-        box-shadow: 1px 13px 19px -6px rgba(22,26,29,0.75);
-        font-weight: bold;
-    }
-    &.box-blue{
-        // box-shadow: 10px 10px 5px 0px rgba(9, 2, 77, 0.75);
-        background-color: #A4161A;
-        width: 100px;
-        justify-content: flex-start;
-    };
-    &.box-red{
-        // box-shadow: 10px 10px 5px 0px rgba(77, 1, 1, 0.75);
-        background-color: #BA181B;
-        width: 100px;
-        justify-content: flex-end;
-        margin-left: 10px;
-    };
-}
+
+

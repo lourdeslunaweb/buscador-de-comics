@@ -1,0 +1,36 @@
+// Your public key
+// 06e295e3c238e43e31ef140c424be15b
+
+// Your private key
+// fb7c2312c6804213e326c91c5d7d6683169968ae
+
+// 1fb7c2312c6804213e326c91c5d7d6683169968ae06e295e3c238e43e31ef140c424be15b
+// hash : 953044dd6187bef3005abdd0e7cf0d93
+
+//definir types
+const getDataCharacter = {
+    render: () => {
+        const urlAPI = "https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=06e295e3c238e43e31ef140c424be15b&hash=1eee8ff490d4a973b65d6f613e9569ff";
+        const container = document.getElementById("marvel-cards");
+        let contentHTML = "";
+
+        fetch(urlAPI)
+        .then(res => res.json())
+        .then((json) => {
+            for(const hero of json.data.results){
+                let urlHero = hero.urls[0].url;
+                let thumb = hero.thumbnail;
+                contentHTML+= `
+                <div class="card-home">
+                    <a href="${urlHero}" target="_blank"class="">
+                        <img src="${thumb.path}.${thumb.extension}" alt="${hero.name}" class="img-thumb">
+                    </a>
+                    <h3>${hero.name}</h3>
+                </div>`;
+            }
+            container.innerHTML = contentHTML;
+            console.log(json,'RES.JSON')
+        })
+    }
+}
+getDataCharacter.render();

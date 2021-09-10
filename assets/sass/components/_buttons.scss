@@ -1,0 +1,12 @@
+button {
+    padding: $padding-s;
+    background-color: $secondary;
+    color: #ffffff;
+    border: 0;
+    border-radius: $border-rounded;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    @include flex-center;
+    @include red-hover;
+    
+}
