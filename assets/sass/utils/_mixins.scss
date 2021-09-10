@@ -6,7 +6,7 @@
 
 @mixin red-hover {
     &:hover{
-        background-color: $red-hover;
+        color: $red-hover;
     }
 }
 
@@ -37,7 +37,7 @@
 @mixin card-name {
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
-    font-weight: 300;
+    font-weight: 700;
     color: $tertiary;
     @include red-hover;
 }

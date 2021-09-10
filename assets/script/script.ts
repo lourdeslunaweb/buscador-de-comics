@@ -11,9 +11,8 @@
 const getDataCharacter = {
     render: () => {
         const urlAPI = "https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=06e295e3c238e43e31ef140c424be15b&hash=1eee8ff490d4a973b65d6f613e9569ff";
-        const container = document.getElementById("marvel-cards");
+        const marvelCards = document.getElementById("marvel-cards");
         let contentHTML = "";
-
         fetch(urlAPI)
         .then(res => res.json())
         .then((json) => {
@@ -21,16 +20,43 @@ const getDataCharacter = {
                 let urlHero = hero.urls[0].url;
                 let thumb = hero.thumbnail;
                 contentHTML+= `
-                <div class="card-home">
-                    <a href="${urlHero}" target="_blank"class="">
-                        <img src="${thumb.path}.${thumb.extension}" alt="${hero.name}" class="img-thumb">
+                <div class="card-div">
+                    <a href="${urlHero}" target="_blank">
+                        <img src="${thumb.path}.${thumb.extension}" alt="${hero.name}"  class="card-home">
                     </a>
                     <h3>${hero.name}</h3>
                 </div>`;
             }
-            container.innerHTML = contentHTML;
-            console.log(json,'RES.JSON')
+            marvelCards.innerHTML = contentHTML;
+            // console.log(json,'RES.JSON')
         })
     }
 }
 getDataCharacter.render();
+
+const getDataComics = {
+    render: () => {
+        const urlAPI = "https://gateway.marvel.com:443/v1/public/comics?ts=1&apikey=06e295e3c238e43e31ef140c424be15b&hash=1eee8ff490d4a973b65d6f613e9569ff";
+        const marvelCards = document.getElementById("marvel-cards2");
+        let contentHTML = "";
+        fetch(urlAPI)
+        .then(res => res.json())
+        .then((json) => {
+            for(const comic of json.data.results){
+                let urlComic = comic.urls[0].url;
+                let thumb = comic.thumbnail;
+                contentHTML+= `
+                <div class="card-div">
+                    <a href="${urlComic}" target="_blank">
+                        <img src="${thumb.path}.${thumb.extension}" alt="${comic.title}"  class="card-home">
+                    </a>
+                    <h3>${comic.title}</h3>
+                </div>`;
+            }
+            marvelCards.innerHTML = contentHTML;
+            console.log(json,'RES.JSON')
+        })
+    }
+}
+
+getDataComics.render();
