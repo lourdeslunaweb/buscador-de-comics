@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,500;1,700&display=swap");
-button {
+.search-button {
   padding: 1rem;
   background-color: #BA181B;
   color: #ffffff;
@@ -11,8 +11,14 @@ button {
   display: flex;
   justify-content: center;
   align-items: center; }
-  button:hover {
+  .search-button:hover {
     color: #E5383B; }
+
+.pass-button {
+  font-size: 2rem;
+  margin-left: 1rem;
+  border: none;
+  background-color: #D3D3D3; }
 
 .marvel-cards {
   display: flex;
@@ -26,19 +32,21 @@ button {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  height: 500px;
-  width: 350px; }
+  height: 420px;
+  width: 280px;
+  margin-top: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  color: #161a1d; }
+  .card-div:hover {
+    color: #E5383B; }
   .card-div h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
-    font-weight: 700;
-    color: #161a1d; }
-    .card-div h3:hover {
-      color: #E5383B; }
+    margin-top: 1rem; }
 
 .card-home {
-  height: 400px;
-  width: 250px;
+  height: 350px;
+  width: 230px;
   box-shadow: 1px 13px 19px -6px rgba(22, 26, 29, 0.75);
   transition: all 0.5s; }
   .card-home:hover {
@@ -50,6 +58,19 @@ button {
 
 .carousel {
   height: 50vh; }
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #D3D3D3;
+  margin-top: 1.5rem;
+  padding: 2rem 0 1.5rem 0;
+  background-color: #161a1d; }
+  footer h2 {
+    margin: 0.5rem;
+    color: #D3D3D3; }
 
 .search-container {
   display: flex;
@@ -86,8 +107,23 @@ button {
       width: 30vw;
       padding: 0 0.8rem; }
 
-p {
-  color: #161a1d; }
+.page-pass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 7rem 0 7rem 0; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
 
 body {
   background-color: #D3D3D3; }
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #161a1d;
+  margin-left: 2.5rem; }

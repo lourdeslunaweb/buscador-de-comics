@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/img/favicon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/main.css">
     <title>Buscador de comics</title>
     <script src="https://kit.fontawesome.com/45d522e85c.js" crossorigin="anonymous"></script>
@@ -16,17 +17,16 @@
         <h2>Búsqueda</h2>
         <div class="search-line">
             <div class="search-box">
-                <input type="text" placeholder="Ingresá tu búsqueda" aria-placeholder="Ingresá tu búsqueda">
-                    <!-- <i class="fas fa-search"><i>                 -->
+                <input type="text" placeholder="🔍 Ingresá tu búsqueda" aria-placeholder="Ingresá tu búsqueda">
             </div>
             <div class="type-filter">
                 <label for="" aria-labelledby="Tipo de búsqueda">Tipo</label>
-                <select name="" id="">
-                    <option value="comics">Comics</option>
-                    <option value="personajes">Personajes</option>
+                <select name="" id="type-filter">
+                    <option value="comics">💥Comics</option>
+                    <option value="personajes">🦹Personajes</option>
                 </select>
             </div>
-            <div class="alphabetic-filter">
+            <div class="order-filter">
                 <label for="" aria-labelledby="Orden de la búsqueda">Orden</label>
                 <select name="" id="">
                     <option value="a-z">A-Z</option>
@@ -35,16 +35,22 @@
                     <option value="mas-viejos">Más viejos</option>
                 </select>
             </div>
-            <button type="button">Buscar</button>
+            <button type="button" class="search-button" id="search-button">Buscar</button>
         </div>
     </section>
-    <h2>Comics</h2>
-    <section id="marvel-cards2" class="marvel-cards">
-    </section>
-    <hr>
-    <h2>Personajes</h2>
+    <h2>Resultados</h2>
     <section id="marvel-cards" class="marvel-cards">
     </section>
+    <section id="page-pass" class="page-pass">
+        <button type="button" class= "pass-button">⏪</button>
+        <button type="button" class= "pass-button">◀️</button>
+        <button type="button" class= "pass-button">▶️</button>
+        <button type="button" class= "pass-button">⏩</button>
+    </section>
+    <footer>
+        <h2>Hecho con 🤍 por:</h2>
+        <h2>Valeria Alcaraz 👯‍♀️ Lourdes Luna</h2>
+    </footer>
     <script src="./assets/script/script.js"></script>
 </body>
 </html>

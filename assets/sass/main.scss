@@ -10,10 +10,13 @@
 @import "./layout/navigation";
 @import "./layout/footer";
 @import "./layout/search-box";
+@import "./layout/page-pass";
 
 
-p{
-    color: $tertiary;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body{
@@ -21,4 +24,7 @@ body{
 }
 
 
-
+h2{
+    @include title;
+    margin-left: $margin-xl;
+}
