@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/img/favicon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/main.css">
     <title>Buscador de comics</title>
     <script src="https://kit.fontawesome.com/45d522e85c.js" crossorigin="anonymous"></script>
@@ -28,23 +27,24 @@
             </div>
             <div class="order-filter">
                 <label for="" aria-labelledby="Orden de la búsqueda">Orden</label>
-                <select name="" id="">
+                <select name="" id="sort-filter">
                     <option value="a-z">A-Z</option>
                     <option value="z-a">Z-A</option>
-                    <option value="mas-nuevos">Más nuevos</option>
-                    <option value="mas-viejos">Más viejos</option>
+                    <option value="mas-nuevos" id="newer">Más nuevos</option>
+                    <option value="mas-viejos" id="older">Más viejos</option>
                 </select>
             </div>
             <button type="button" class="search-button" id="search-button">Buscar</button>
         </div>
     </section>
     <h2>Resultados</h2>
+    <h2 id="results"></h2> 
     <section id="marvel-cards" class="marvel-cards">
     </section>
     <section id="turn-page" class="turn-page">
-        <button type="button" class= "pass-button">⏪</button>
-        <button type="button" class= "pass-button">◀️</button>
-        <button type="button" class= "pass-button">▶️</button>
+        <button type="button" class= "pass-button"  id="first-page-btn">⏪</button>
+        <button type="button" class= "pass-button" id="prev-btn">◀️</button>
+        <button type="button" class= "pass-button" id="next-btn">▶️</button>
         <button type="button" class= "pass-button">⏩</button>
     </section>
     <footer>

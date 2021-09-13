@@ -28,3 +28,7 @@ h2{
     @include title;
     margin-left: $margin-xl;
 }
+
+.hidden{
+    display: none;
+}

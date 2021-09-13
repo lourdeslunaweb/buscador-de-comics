@@ -127,3 +127,6 @@ h2 {
   font-weight: 700;
   color: #161a1d;
   margin-left: 2.5rem; }
+
+.hidden {
+  display: none; }
