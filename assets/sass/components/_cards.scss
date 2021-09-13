@@ -8,16 +8,19 @@
     @include flex-center;
     flex-direction: column;
     text-align: center;
-    height: 500px;
-    width: 350px;
+    height: 420px;
+    width: 280px;
+    margin-top: $margin-l;
+    @include card-name;
     h3{
-        @include card-name;
+        margin-top: $margin-s;
     }
+
 }
 
 .card-home {
-    height: 400px;
-    width: 250px;
+    height: 350px;
+    width: 230px;
     // margin: $margin-l;
     box-shadow: $box-shadow;
     transition: all 0.5s;

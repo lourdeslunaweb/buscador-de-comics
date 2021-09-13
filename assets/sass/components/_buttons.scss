@@ -1,4 +1,4 @@
-button {
+.search-button {
     padding: $padding-s;
     background-color: $secondary;
     color: #ffffff;
@@ -9,4 +9,11 @@ button {
     @include flex-center;
     @include red-hover;
     
+}
+
+.pass-button{
+    font-size: 2rem;
+    margin-left: $margin-s;
+    border: none;
+    background-color: $primary;
 }
