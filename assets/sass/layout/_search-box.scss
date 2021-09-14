@@ -5,9 +5,6 @@
     flex-direction: column;
     height: 14rem;
     padding: $padding-s;
-
-    // background-color: $tertiary;
-
     .search-line {
         height: 6rem;
         width: 80vw;
@@ -37,7 +34,7 @@
                 padding: 0 0.8rem;
             }
         }
-        .alphabetic-filter{
+        .order-filter{
 
         }
         button {
