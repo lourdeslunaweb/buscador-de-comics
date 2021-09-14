@@ -26,19 +26,16 @@
             border: 0;
             border-radius: $border-rounded;
         }
-        select {
-            padding: 0 0.8rem;
-        }
-        input {
-            width: 30vw;
-            padding: 0 0.8rem;
-        }
         .search-box {
-            
+            input {
+                width: 30vw;
+                padding: 0 0.8rem;
+            }            
         }
         .type-filter {
-
-
+            select {
+                padding: 0 0.8rem;
+            }
         }
         .alphabetic-filter{
 
@@ -47,17 +44,8 @@
             //completar en archivo de buttons
         }
     }
-    input {
-
-    }
-    select {
-
-    }
     button {
 
     }
 }
 
-.search2 {
-    
-}
