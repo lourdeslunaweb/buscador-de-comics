@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <title>Buscador de comics</title>
     <script src="https://kit.fontawesome.com/45d522e85c.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <section class="carousel">
         <div class="logo"></div>
@@ -38,21 +40,47 @@
             <button type="button" class="search-button" id="search-button">Buscar</button>
         </div>
     </section>
-    <h2>Resultados</h2>
-    <h2 id="results"></h2> 
-    <section id="marvel-cards" class="marvel-cards">
+    <button class="search-button"><a href="./index.html">Inicio</a></button>
+    <section id="card-data" class="card-data-container">
+        <div class="card-data">
+            <div class="img-data">
+                <img src="" alt="ComicImg/HeroImg" id="img-data">
+            </div>
+            <div class="text-data">
+                <h3 class="item-data" id="title">Title</h3>
+                <div class="item-data">
+                    <h4>Publicado:</h4>
+                    <p id="date-data">Lorem ipsum, dolor sit amet</p>
+                </div>
+                <div class="item-data">
+                    <h4>Guionistas:</h4>
+                    <p id="creator-data">Lorem ipsum, dolor sit amet</p>
+                </div>
+                <div class="item-data">
+                    <h4>Descripción:</h4>
+                    <p id="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis quam recusandae repellendus
+                        quaerat
+                        placeat odio. Earum similique deserunt placeat nemo esse quis autem itaque, totam ipsa ea
+                        laborum in
+                        ullam?</p>
+                </div>
+            </div>
+        </div>
     </section>
     <section id="turn-page" class="turn-page">
-        <button type="button" class= "pass-button"  id="first-page-btn">⏪</button>
-        <button type="button" class= "pass-button" id="prev-btn">◀️</button>
-        <button type="button" class= "pass-button" id="next-btn">▶️</button>
-        <button type="button" class= "pass-button">⏩</button>
+        <button type="button" class="pass-button" id="first-page-btn">⏪</button>
+        <button type="button" class="pass-button" id="prev-btn">◀️</button>
+        <button type="button" class="pass-button" id="next-btn">▶️</button>
+        <button type="button" class="pass-button">⏩</button>
     </section>
     <footer>
         <h2>Hecho con 🤍 por:</h2>
-        <h2> 🦸‍♀️ Valeria Alcaraz</h2> <h2>y</h2> <h2>Lourdes Luna 🦹‍♀️</h2>
+        <h2> 🦸‍♀️ Valeria Alcaraz</h2>
+        <h2>y</h2>
+        <h2>Lourdes Luna 🦹‍♀️</h2>
     </footer>
     <script src="./assets/script/script.js"></script>
     <script src="./assets/script/data.js"></script>
 </body>
+
 </html>

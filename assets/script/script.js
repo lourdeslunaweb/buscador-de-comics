@@ -38,7 +38,8 @@ var getDataComics = {
                 var comic = _a[_i];
                 var urlComic = comic.urls[0].url;
                 var thumb = comic.thumbnail;
-                contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + urlComic + "\" target=\"_blank\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comic.title + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + comic.title + "</h3>\n                </div>";
+                var hrefData = "./data.html?title=" + comic.title + "&ImgSrc=" + comic.thumbnail.path + "." + comic.thumbnail.extension + "&published=" + comic.dates[0].date + "&description=" + comic.description + "&characters=" + comic.characters.collectionURI + "&creator=" + comic.creators.collectionURI;
+                contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + hrefData + "\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comic.title + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + comic.title + "</h3>\n                </div>";
             }
             marvelCards.innerHTML = contentHTML;
             // Pagination

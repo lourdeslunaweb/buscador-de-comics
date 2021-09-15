@@ -39,9 +39,10 @@ const getDataComics = {
                 for (const comic of json.data.results) {
                     let urlComic = comic.urls[0].url;
                     let thumb = comic.thumbnail;
+                    let hrefData = `./data.html?title=${comic.title}&ImgSrc=${comic.thumbnail.path}.${comic.thumbnail.extension}&published=${comic.dates[0].date}&description=${comic.description}&characters=${comic.characters.collectionURI}&creator=${comic.creators.collectionURI}`
                     contentHTML += `
                 <div class="card-div">
-                    <a href="${urlComic}" target="_blank">
+                    <a href="${hrefData}">
                         <img src="${thumb.path}.${thumb.extension}" alt="${comic.title}"  class="card-home">
                     </a>
                     <h3>${comic.title}</h3>
