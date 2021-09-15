@@ -12,8 +12,6 @@ let pageNumber: number = 1;
 const limit = 20;
 let offset = 0;
 let pagination;
-// var noticias = ["Noticia 1", "Noticia 2", "Noticia 3"]; esto seria nuestro json.data.results
-// var pageCont = Math.ceil(noticias.length / pageSize); se define adentro del fetch
 const typeFilter = document.getElementById("type-filter");
 const marvelCards = document.getElementById("marvel-cards");
 const results = document.getElementById("results");
@@ -37,15 +35,25 @@ const getDataComics = {
                 console.log("COMICS", json)
                 // Display results
                 for (const comic of json.data.results) {
-                    let urlComic = comic.urls[0].url;
-                    let thumb = comic.thumbnail;
-                    let hrefData = `./data.html?title=${comic.title}&ImgSrc=${comic.thumbnail.path}.${comic.thumbnail.extension}&published=${comic.dates[0].date}&description=${comic.description}&characters=${comic.characters.collectionURI}&creator=${comic.creators.collectionURI}`
+                    let thumb = comic.thumbnail ? comic.thumbnail : "";
+                    let comicTitle = comic.title ? comic.title : "";
+                    let comicDescription = comic.description ? comic.description : "";
+                    let comicDate = comic.dates[0].date ? comic.dates[0].date : "";
+                    let comicCharacters = comic.characters.collectionURI ? comic.characters.collectionURI : "";
+                    let guionist = [];
+                    for (const prop in comic.creators.items) {
+                        guionist.push(comic.creators.items[prop].name)
+                    }
+                    console.log(guionist);
+                    console.log(comicDescription);
+                    let comicCreators = guionist ? guionist : "";
+                    let hrefData = `./data.html?title=${comicTitle}&ImgSrc=${thumb.path}.${thumb.extension}&published=${comicDate}&description=${comicDescription}&characters=${comicCharacters}&creator=${comicCreators}`;
                     contentHTML += `
                 <div class="card-div">
                     <a href="${hrefData}">
-                        <img src="${thumb.path}.${thumb.extension}" alt="${comic.title}"  class="card-home">
+                        <img src="${thumb.path}.${thumb.extension}" alt="${comicTitle}"  class="card-home">
                     </a>
-                    <h3>${comic.title}</h3>
+                    <h3>${comicTitle}</h3>
                 </div>`;
                 }
                 marvelCards.innerHTML = contentHTML;
@@ -56,6 +64,7 @@ const getDataComics = {
             })
     }
 }
+
 
 // *** GET CHARACTERS DATA ***
 const getDataCharacter = {
@@ -89,7 +98,7 @@ const getDataCharacter = {
 const nextPage = () => {
     offset += 20;
     getDataComics.render(offset);
-    if(offset >= 20){
+    if (offset >= 20) {
         prevBtn.classList.remove("hidden");
         firstPageBtn.classList.remove("hidden");
     }

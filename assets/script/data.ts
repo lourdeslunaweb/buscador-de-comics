@@ -9,7 +9,9 @@ const date = new Date(params.get("published")).toLocaleDateString();
 const creator = params.get("creator");
 const description = params.get("description");
 const characters = params.get("characters");
-console.log(title, imgSrc, date, description, characters, creator);
+console.log("Creator:", creator);
+console.log("----------------------------");
+console.log("Characters", characters )
 //Nodes
 const imgData = document.getElementById("img-data");
 const titleData = document.getElementById("title");

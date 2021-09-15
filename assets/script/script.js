@@ -12,8 +12,6 @@ var pageNumber = 1;
 var limit = 20;
 var offset = 0;
 var pagination;
-// var noticias = ["Noticia 1", "Noticia 2", "Noticia 3"]; esto seria nuestro json.data.results
-// var pageCont = Math.ceil(noticias.length / pageSize); se define adentro del fetch
 var typeFilter = document.getElementById("type-filter");
 var marvelCards = document.getElementById("marvel-cards");
 var results = document.getElementById("results");
@@ -36,10 +34,20 @@ var getDataComics = {
             // Display results
             for (var _i = 0, _a = json.data.results; _i < _a.length; _i++) {
                 var comic = _a[_i];
-                var urlComic = comic.urls[0].url;
-                var thumb = comic.thumbnail;
-                var hrefData = "./data.html?title=" + comic.title + "&ImgSrc=" + comic.thumbnail.path + "." + comic.thumbnail.extension + "&published=" + comic.dates[0].date + "&description=" + comic.description + "&characters=" + comic.characters.collectionURI + "&creator=" + comic.creators.collectionURI;
-                contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + hrefData + "\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comic.title + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + comic.title + "</h3>\n                </div>";
+                var thumb = comic.thumbnail ? comic.thumbnail : "";
+                var comicTitle = comic.title ? comic.title : "";
+                var comicDescription = comic.description ? comic.description : "";
+                var comicDate = comic.dates[0].date ? comic.dates[0].date : "";
+                var comicCharacters = comic.characters.collectionURI ? comic.characters.collectionURI : "";
+                var guionist = [];
+                for (var prop in comic.creators.items) {
+                    guionist.push(comic.creators.items[prop].name);
+                }
+                console.log(guionist);
+                console.log(comicDescription);
+                var comicCreators = guionist ? guionist : "";
+                var hrefData = "./data.html?title=" + comicTitle + "&ImgSrc=" + thumb.path + "." + thumb.extension + "&published=" + comicDate + "&description=" + comicDescription + "&characters=" + comicCharacters + "&creator=" + comicCreators;
+                contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + hrefData + "\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comicTitle + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + comicTitle + "</h3>\n                </div>";
             }
             marvelCards.innerHTML = contentHTML;
             // Pagination
