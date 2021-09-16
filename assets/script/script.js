@@ -43,8 +43,6 @@ var getDataComics = {
                 for (var prop in comic.creators.items) {
                     guionist.push(comic.creators.items[prop].name);
                 }
-                console.log(guionist);
-                console.log(comicDescription);
                 var comicCreators = guionist ? guionist : "";
                 var hrefData = "./data.html?title=" + comicTitle + "&ImgSrc=" + thumb.path + "." + thumb.extension + "&published=" + comicDate + "&description=" + comicDescription + "&characters=" + comicCharacters + "&creator=" + comicCreators;
                 contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + hrefData + "\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comicTitle + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + comicTitle + "</h3>\n                </div>";

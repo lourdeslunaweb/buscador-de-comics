@@ -44,8 +44,6 @@ const getDataComics = {
                     for (const prop in comic.creators.items) {
                         guionist.push(comic.creators.items[prop].name)
                     }
-                    console.log(guionist);
-                    console.log(comicDescription);
                     let comicCreators = guionist ? guionist : "";
                     let hrefData = `./data.html?title=${comicTitle}&ImgSrc=${thumb.path}.${thumb.extension}&published=${comicDate}&description=${comicDescription}&characters=${comicCharacters}&creator=${comicCreators}`;
                     contentHTML += `
