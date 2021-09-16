@@ -2,26 +2,12 @@
 // Your private key: fb7c2312c6804213e326c91c5d7d6683169968ae
 // hash : 953044dd6187bef3005abdd0e7cf0d93
 
-const baseUrl: string = "https://gateway.marvel.com:443/v1/public/";
-const apiKey: string = "06e295e3c238e43e31ef140c424be15b";
-const hash: string = "1eee8ff490d4a973b65d6f613e9569ff";
-const searchParam = new URLSearchParams(window.location.search);
+
 let pageNumber: number = 1;
-const limit = 20;
-let offset = 0;
+
 let pagination;
 
 
-const searchInput = document.getElementById("search-input");
-
-const typeFilter = document.getElementById("type-filter");
-const results = document.getElementById("results");
-const older = document.getElementById("older");
-const newer = document.getElementById("newer");
-const sortFilter = document.getElementById("sort-filter");
-const searchBtn = document.getElementById("search-button");
-
-const marvelCards = document.getElementById("marvel-cards");
 
 const nextBtn = document.getElementById("next-btn");
 const prevBtn = document.getElementById("prev-btn");
@@ -33,7 +19,6 @@ const getDataComics = {
     render: (offset) => {
         const urlAPI = `${baseUrl}comics?ts=1&apikey=${apiKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
         let contentHTML = "";
-
         fetch(urlAPI)
             .then(res => res.json())
             .then((json) => {
@@ -156,9 +141,9 @@ const refreshBySearch = array => {
 
 
 // *** INIT FUNCTION ***
-const indexInit = () => {
-    getDataComics.render(offset);
-    prevBtn.classList.add("hidden");
-    firstPageBtn.classList.add("hidden");
-}
-indexInit();
+// const indexInit = () => {
+//     getDataComics.render(offset);
+//     prevBtn.classList.add("hidden");
+//     firstPageBtn.classList.add("hidden");
+// }
+// indexInit();
