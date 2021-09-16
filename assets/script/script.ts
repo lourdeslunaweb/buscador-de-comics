@@ -11,7 +11,9 @@ const limit = 20;
 let offset = 0;
 let pagination;
 
+
 const searchInput = document.getElementById("search-input");
+
 const typeFilter = document.getElementById("type-filter");
 const results = document.getElementById("results");
 const older = document.getElementById("older");
@@ -33,20 +35,28 @@ const getDataComics = {
         let contentHTML = "";
 
         fetch(urlAPI)
-        .then(res => res.json())
-        .then((json) => {
-            const comics:Comic[] = json.data.results;
-            
-            // Display results
-            for (const comic of comics) {
-                let urlComic = comic.urls[0].url;
-                let thumb = comic.thumbnail;
-                contentHTML += `
+            .then(res => res.json())
+            .then((json) => {
+                console.log("COMICS", json)
+                // Display results
+                for (const comic of json.data.results) {
+                    let thumb = comic.thumbnail ? comic.thumbnail : "";
+                    let comicTitle = comic.title ? comic.title : "";
+                    let comicDescription = comic.description ? comic.description : "";
+                    let comicDate = comic.dates[0].date ? comic.dates[0].date : "";
+                    let comicCharacters = comic.characters.collectionURI ? comic.characters.collectionURI : "";
+                    let guionist = [];
+                    for (const prop in comic.creators.items) {
+                        guionist.push(comic.creators.items[prop].name)
+                    }
+                    let comicCreators = guionist ? guionist : "";
+                    let hrefData = `./data.html?title=${comicTitle}&ImgSrc=${thumb.path}.${thumb.extension}&published=${comicDate}&description=${comicDescription}&characters=${comicCharacters}&creator=${comicCreators}`;
+                    contentHTML += `
                 <div class="card-div">
-                <a href="${urlComic}" target="_blank">
-                <img src="${thumb.path}.${thumb.extension}" alt="${comic.title}"  class="card-home">
-                </a>
-                <h3>${comic.title}</h3>
+                    <a href="${hrefData}">
+                        <img src="${thumb.path}.${thumb.extension}" alt="${comicTitle}"  class="card-home">
+                    </a>
+                    <h3>${comicTitle}</h3>
                 </div>`;
             }
             marvelCards.innerHTML = contentHTML;
@@ -61,7 +71,9 @@ const getDataComics = {
 
 }
 
+
 // *** GET CHARACTERS' DATA ***
+
 const getDataCharacter = {
     render: () => {
         const urlAPI = `${baseUrl}characters?ts=1&apikey=${apiKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
@@ -97,7 +109,7 @@ const getDataCharacter = {
 const nextPage = () => {
     offset += 20;
     getDataComics.render(offset);
-    if(offset >= 20){
+    if (offset >= 20) {
         prevBtn.classList.remove("hidden");
         firstPageBtn.classList.remove("hidden");
     }

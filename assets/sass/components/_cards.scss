@@ -1,10 +1,9 @@
-
-.marvel-cards{
+.marvel-cards {
     @include flex-center;
     flex-wrap: wrap;
 }
 
-.card-div{
+.card-div {
     @include flex-center;
     flex-direction: column;
     text-align: center;
@@ -12,25 +11,65 @@
     width: 280px;
     margin-top: $margin-l;
     @include card-name;
-    h3{
+    h3 {
         margin-top: $margin-s;
     }
-
 }
 
 .card-home {
     height: 350px;
     width: 230px;
-    // margin: $margin-l;
     box-shadow: $box-shadow;
     transition: all 0.5s;
     @include card-transition;
 }
 
-.card-selected {
-
+.card-data-container {
+    @include flex-center;
+    .card-data {
+        display: flex;
+        width: 80%;
+        .img-data {
+            img {
+                width: 30rem;
+            }
+        }
+        .text-data{
+            .item-data{
+                margin: $margin-l 0 0 $margin-l;
+                font-family: 'Montserrat', sans-serif;
+            }
+        }
+    }
 }
 
-.card-character {
+@media screen and (max-width: 900px){
+    .card-data-container {
+        .card-data {
+            @include flex-center;
+            flex-direction: column;
+            .img-data {
+                img {
+                    width: 27rem;
+                }
+            }
+            .text-data{
+                .item-data{
+                    margin: $margin-l 0 0 0;
+                }
+            }
+        }
+    }
+}
 
+@media screen and (max-width: 600px){
+    .card-data-container {
+        .card-data {
+            .img-data {
+                img {
+                    width: 17rem;
+                }
+            }
+        }
+    }
 }

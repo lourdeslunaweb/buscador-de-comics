@@ -9,7 +9,9 @@ var pageNumber = 1;
 var limit = 20;
 var offset = 0;
 var pagination;
+
 var searchInput = document.getElementById("search-input");
+
 var typeFilter = document.getElementById("type-filter");
 var results = document.getElementById("results");
 var older = document.getElementById("older");
@@ -30,11 +32,27 @@ var getDataComics = {
             .then(function (json) {
             var comics = json.data.results;
             // Display results
+
+            for (var _i = 0, _a = json.data.results; _i < _a.length; _i++) {
+                var comic = _a[_i];
+                var thumb = comic.thumbnail ? comic.thumbnail : "";
+                var comicTitle = comic.title ? comic.title : "";
+                var comicDescription = comic.description ? comic.description : "";
+                var comicDate = comic.dates[0].date ? comic.dates[0].date : "";
+                var comicCharacters = comic.characters.collectionURI ? comic.characters.collectionURI : "";
+                var guionist = [];
+                for (var prop in comic.creators.items) {
+                    guionist.push(comic.creators.items[prop].name);
+                }
+                var comicCreators = guionist ? guionist : "";
+                var hrefData = "./data.html?title=" + comicTitle + "&ImgSrc=" + thumb.path + "." + thumb.extension + "&published=" + comicDate + "&description=" + comicDescription + "&characters=" + comicCharacters + "&creator=" + comicCreators;
+                contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + hrefData + "\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comicTitle + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + comicTitle + "</h3>\n                </div>";
+
             for (var _i = 0, comics_1 = comics; _i < comics_1.length; _i++) {
                 var comic = comics_1[_i];
                 var urlComic = comic.urls[0].url;
                 var thumb = comic.thumbnail;
-                contentHTML += "\n                <div class=\"card-div\">\n                <a href=\"" + urlComic + "\" target=\"_blank\">\n                <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comic.title + "\"  class=\"card-home\">\n                </a>\n                <h3>" + comic.title + "</h3>\n                </div>";
+
             }
             marvelCards.innerHTML = contentHTML;
             // Pagination
