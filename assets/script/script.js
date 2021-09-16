@@ -1,8 +1,5 @@
-// Your public key
-// 06e295e3c238e43e31ef140c424be15b
-// Your private key
-// fb7c2312c6804213e326c91c5d7d6683169968ae
-// 1fb7c2312c6804213e326c91c5d7d6683169968ae06e295e3c238e43e31ef140c424be15b
+// Your public key: 06e295e3c238e43e31ef140c424be15b
+// Your private key: fb7c2312c6804213e326c91c5d7d6683169968ae
 // hash : 953044dd6187bef3005abdd0e7cf0d93
 var baseUrl = "https://gateway.marvel.com:443/v1/public/";
 var apiKey = "06e295e3c238e43e31ef140c424be15b";
@@ -12,19 +9,18 @@ var pageNumber = 1;
 var limit = 20;
 var offset = 0;
 var pagination;
-// var noticias = ["Noticia 1", "Noticia 2", "Noticia 3"]; esto seria nuestro json.data.results
-// var pageCont = Math.ceil(noticias.length / pageSize); se define adentro del fetch
+var searchInput = document.getElementById("search-input");
 var typeFilter = document.getElementById("type-filter");
-var marvelCards = document.getElementById("marvel-cards");
 var results = document.getElementById("results");
-var searchBtn = document.getElementById("search-button");
-var nextBtn = document.getElementById("next-btn");
-var prevBtn = document.getElementById("prev-btn");
-var firstPageBtn = document.getElementById("first-page-btn");
 var older = document.getElementById("older");
 var newer = document.getElementById("newer");
 var sortFilter = document.getElementById("sort-filter");
-// *** GET COMICS DATA ***
+var searchBtn = document.getElementById("search-button");
+var marvelCards = document.getElementById("marvel-cards");
+var nextBtn = document.getElementById("next-btn");
+var prevBtn = document.getElementById("prev-btn");
+var firstPageBtn = document.getElementById("first-page-btn");
+// *** GET COMICS' DATA ***
 var getDataComics = {
     render: function (offset) {
         var urlAPI = baseUrl + "comics?ts=1&apikey=" + apiKey + "&hash=" + hash + "&limit=" + limit + "&offset=" + offset;
@@ -32,13 +28,13 @@ var getDataComics = {
         fetch(urlAPI)
             .then(function (res) { return res.json(); })
             .then(function (json) {
-            console.log("COMICS", json);
+            var comics = json.data.results;
             // Display results
-            for (var _i = 0, _a = json.data.results; _i < _a.length; _i++) {
-                var comic = _a[_i];
+            for (var _i = 0, comics_1 = comics; _i < comics_1.length; _i++) {
+                var comic = comics_1[_i];
                 var urlComic = comic.urls[0].url;
                 var thumb = comic.thumbnail;
-                contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + urlComic + "\" target=\"_blank\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comic.title + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + comic.title + "</h3>\n                </div>";
+                contentHTML += "\n                <div class=\"card-div\">\n                <a href=\"" + urlComic + "\" target=\"_blank\">\n                <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comic.title + "\"  class=\"card-home\">\n                </a>\n                <h3>" + comic.title + "</h3>\n                </div>";
             }
             marvelCards.innerHTML = contentHTML;
             // Pagination
@@ -48,7 +44,7 @@ var getDataComics = {
         });
     }
 };
-// *** GET CHARACTERS DATA ***
+// *** GET CHARACTERS' DATA ***
 var getDataCharacter = {
     render: function () {
         var urlAPI = baseUrl + "characters?ts=1&apikey=" + apiKey + "&hash=" + hash + "&limit=" + limit + "&offset=" + offset;
@@ -58,6 +54,8 @@ var getDataCharacter = {
             .then(function (json) {
             var resNumber = json.data.total;
             results.innerText = resNumber + " resultados";
+            var filterByWord = function () { return console.log(searchInput.value); };
+            searchBtn.addEventListener("click", filterByWord);
             for (var _i = 0, _a = json.data.results; _i < _a.length; _i++) {
                 var hero = _a[_i];
                 var urlHero = hero.urls[0].url;
@@ -65,7 +63,7 @@ var getDataCharacter = {
                 contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + urlHero + "\" target=\"_blank\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + hero.name + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + hero.name + "</h3>\n                </div>";
             }
             marvelCards.innerHTML = contentHTML;
-            console.log("PERSONAJES", json);
+            // console.log("PERSONAJES", json)
         });
     }
 };
@@ -93,20 +91,17 @@ prevBtn.addEventListener("click", prevPage);
 // ******************
 // *** SEARCH BOX ***
 // ******************
-// *** FILTERS ***
-var filterByType = function (e) {
-    if (typeFilter.value === "comics") {
-        older.classList.remove("hidden");
-        newer.classList.remove("hidden");
-        getDataComics.render();
+// *** REFRESH BY SEARCH FUNCTION ***
+var refreshBySearch = function (array) {
+    marvelCards.innerHTML = "";
+    var contentHTML = "";
+    for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
+        var comic = array_1[_i];
+        var thumb = comic.thumbnail;
+        contentHTML += "\n        <div class=\"card-div\">\n        <a href=\"#\" target=\"_blank\">\n        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comic.title + "\"  class=\"card-home\">\n        </a>\n        <h3>" + comic.title + "</h3>\n        </div>";
     }
-    else if (typeFilter.value === "personajes") {
-        older.classList.add("hidden");
-        newer.classList.add("hidden");
-        getDataCharacter.render();
-    }
+    marvelCards.innerHTML = contentHTML;
 };
-typeFilter.addEventListener("change", filterByType);
 // *** INIT FUNCTION ***
 var indexInit = function () {
     getDataComics.render(offset);
