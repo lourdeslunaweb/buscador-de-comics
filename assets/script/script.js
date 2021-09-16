@@ -9,9 +9,7 @@ var pageNumber = 1;
 var limit = 20;
 var offset = 0;
 var pagination;
-
 var searchInput = document.getElementById("search-input");
-
 var typeFilter = document.getElementById("type-filter");
 var results = document.getElementById("results");
 var older = document.getElementById("older");
@@ -30,9 +28,8 @@ var getDataComics = {
         fetch(urlAPI)
             .then(function (res) { return res.json(); })
             .then(function (json) {
-            var comics = json.data.results;
+            console.log("COMICS", json);
             // Display results
-
             for (var _i = 0, _a = json.data.results; _i < _a.length; _i++) {
                 var comic = _a[_i];
                 var thumb = comic.thumbnail ? comic.thumbnail : "";
@@ -47,12 +44,6 @@ var getDataComics = {
                 var comicCreators = guionist ? guionist : "";
                 var hrefData = "./data.html?title=" + comicTitle + "&ImgSrc=" + thumb.path + "." + thumb.extension + "&published=" + comicDate + "&description=" + comicDescription + "&characters=" + comicCharacters + "&creator=" + comicCreators;
                 contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + hrefData + "\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comicTitle + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + comicTitle + "</h3>\n                </div>";
-
-            for (var _i = 0, comics_1 = comics; _i < comics_1.length; _i++) {
-                var comic = comics_1[_i];
-                var urlComic = comic.urls[0].url;
-                var thumb = comic.thumbnail;
-
             }
             marvelCards.innerHTML = contentHTML;
             // Pagination
