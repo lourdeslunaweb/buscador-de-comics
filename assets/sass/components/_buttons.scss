@@ -1,17 +1,24 @@
 .search-button {
     padding: $padding-s;
     background-color: $secondary;
-    color: #ffffff;
+    color: $primary;
     border: 0;
     border-radius: $border-rounded;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     @include flex-center;
-    @include red-hover;
-    
+    &:hover {
+        color: $secondary;
+        background-color: $primary;
+        font-weight: 700;
+        border: 5px solid $secondary;
+    //     border-color: $secondary;
+    //     border-style: solid ;
+    //     border-width: 10px;
+    }
 }
 
-.pass-button{
+.pass-button {
     font-size: 2rem;
     margin-left: $margin-s;
     border: none;
