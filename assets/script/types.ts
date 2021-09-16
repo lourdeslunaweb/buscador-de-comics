@@ -26,6 +26,6 @@ type Comic = {
     images?: string[],
     creators?: Object, // tipar????
     characters?: Object, // tipar????
-    stories?: Object, // tipar?
+    stories?: Object, // tipar? 
     events?: string[],
 }
