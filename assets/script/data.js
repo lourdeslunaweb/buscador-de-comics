@@ -5,10 +5,10 @@
 var params = new URLSearchParams(window.location.search);
 var imgSrc = params.get("ImgSrc");
 var title = params.get("title");
-var date = new Date(params.get("published")).toLocaleDateString();
-var creator = params.get("creator");
+var date = new Date(params.get("published")).toLocaleDateString() ? new Date(params.get("published")).toLocaleDateString() : "";
+var creator = params.get("creator") ? params.get("creator") : "";
 var description = params.get("description");
-var charactersUrl = params.get("characters");
+var urlForFetch = params.get("urlForFetch") ? params.get("urlForFetch") : "";
 var typeData = params.get("type");
 //Nodes
 var imgData = document.getElementById("img-data");
@@ -33,17 +33,16 @@ else if (typeData === "characters") {
     subTitleBelow.innerHTML = "Comics";
 }
 // Fetch
-var urlData = charactersUrl + "?ts=1&apikey=" + apiKey + "&hash=" + hash;
-fetch(urlData)
-    .then(function (res) { return res.json(); })
-    .then(function (characters) {
-    console.log(characters.data);
-    var charactersArray = characters.data.results;
-    console.log(charactersArray.length);
-    if (charactersArray.length === 0) {
-        resultsBelow.innerText = "0 resultados";
-        cardsBelow.innerHTML = "<h2> No se han encontrado resultados </h2>";
-    }
-    else {
-    }
-});
+// const urlData = `${charactersUrl}?ts=1&apikey=${apiKey}&hash=${hash}`
+// fetch(urlData)
+//             .then(res => res.json())
+//             .then((characters) => {
+//                 console.log(characters.data)
+//                 const charactersArray = characters.data.results
+//                 console.log(charactersArray.length)
+//                 if (charactersArray.length === 0){
+//                     resultsBelow.innerText ="0 resultados";
+//                     cardsBelow.innerHTML = "<h2> No se han encontrado resultados </h2>"
+//                 } else {
+//                 }
+//         })
