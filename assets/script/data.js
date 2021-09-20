@@ -1,14 +1,19 @@
 // *****************************
 // *** Set Variables in Data ***
 // *****************************
+// COMICS
+// let hrefData = `./data.html?type="comics"&title=${comicTitle}&ImgSrc=${thumb.path}.${thumb.extension}&published=${comicDate}&description=${comicDescription}&charactersUrl=${comicCharacters}&creator=${comicCreators}`;
+// PERSONAJES
+// let hrefData = `./data.html?type="characters"&title=${characterName}&ImgSrc=${thumb.path}.${thumb.extension}&description=${characterDescription}&comicsUrl=${comicUrl}`;
 //Params
 var params = new URLSearchParams(window.location.search);
 var imgSrc = params.get("ImgSrc");
 var title = params.get("title");
-var date = new Date(params.get("published")).toLocaleDateString();
-var creator = params.get("creator");
+var date = new Date(params.get("published")).toLocaleDateString() ? new Date(params.get("published")).toLocaleDateString() : "";
+var creator = params.get("creator") ? params.get("creator") : "";
 var description = params.get("description");
-var charactersUrl = params.get("characters");
+var charactersUrl = params.get("charactersUrl") ? params.get("charactersUrl") : "";
+var comicUrl = params.get("comicsUrl") ? params.get("comicsUrl") : "";
 var typeData = params.get("type");
 //Nodes
 var imgData = document.getElementById("img-data");
@@ -33,17 +38,16 @@ else if (typeData === "characters") {
     subTitleBelow.innerHTML = "Comics";
 }
 // Fetch
-var urlData = charactersUrl + "?ts=1&apikey=" + apiKey + "&hash=" + hash;
-fetch(urlData)
-    .then(function (res) { return res.json(); })
-    .then(function (characters) {
-    console.log(characters.data);
-    var charactersArray = characters.data.results;
-    console.log(charactersArray.length);
-    if (charactersArray.length === 0) {
-        resultsBelow.innerText = "0 resultados";
-        cardsBelow.innerHTML = "<h2> No se han encontrado resultados </h2>";
-    }
-    else {
-    }
-});
+// const urlData = `${charactersUrl}?ts=1&apikey=${apiKey}&hash=${hash}`
+// fetch(urlData)
+//             .then(res => res.json())
+//             .then((characters) => {
+//                 console.log(characters.data)
+//                 const charactersArray = characters.data.results
+//                 console.log(charactersArray.length)
+//                 if (charactersArray.length === 0){
+//                     resultsBelow.innerText ="0 resultados";
+//                     cardsBelow.innerHTML = "<h2> No se han encontrado resultados </h2>"
+//                 } else {
+//                 }
+//         })

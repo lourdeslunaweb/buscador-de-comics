@@ -47,6 +47,7 @@ var getDataCharacter = {
         fetch(urlAPI)
             .then(function (res) { return res.json(); })
             .then(function (json) {
+            console.log(json);
             var resNumber = json.data.total;
             results.innerText = resNumber + " resultados";
             var filterByWord = function () { return console.log(searchInput.value); };
@@ -58,7 +59,7 @@ var getDataCharacter = {
                 contentHTML += "\n                <div class=\"card-div\">\n                    <a href=\"" + urlHero + "\" target=\"_blank\">\n                        <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + hero.name + "\"  class=\"card-home\">\n                    </a>\n                    <h3>" + hero.name + "</h3>\n                </div>";
             }
             marvelCards.innerHTML = contentHTML;
-            // console.log("PERSONAJES", json)
+            console.log("PERSONAJES", json);
         });
     }
 };

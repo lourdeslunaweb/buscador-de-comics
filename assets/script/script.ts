@@ -66,6 +66,7 @@ const getDataCharacter = {
         fetch(urlAPI)
             .then(res => res.json())
             .then((json) => {
+                console.log(json)
                 const resNumber = json.data.total;
                 results.innerText = `${resNumber} resultados`;
 
@@ -84,10 +85,11 @@ const getDataCharacter = {
                 </div>`;
                 }
                 marvelCards.innerHTML = contentHTML;
-                // console.log("PERSONAJES", json)
+                console.log("PERSONAJES", json)
             })
     }
 }
+
 
 
 // *** PAGINATION CONTROLS ***
