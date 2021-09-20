@@ -6,9 +6,10 @@
     height: 14rem;
     padding: $padding-s;
     .search-line {
+        margin-top: $margin-l;
+        // background-color: #0078D7;
         height: 6rem;
-        width: 80vw;
-        // background-color: $secondary;
+        width: 80%;
         padding: $padding-s;
         border-radius: $border-pill;
         display: flex;
@@ -16,33 +17,28 @@
         flex-direction: row;
         align-items: center; 
         @include labels-text;
-        
-        input, select, button {
-            height: 2.5rem;
-            font-size: 1rem;
-            border: 0;
-            border-radius: $border-rounded;
-        }
         .search-box {
             input {
                 width: 30vw;
                 padding: 0 0.8rem;
             }            
         }
+        input, select{
+            height: 2.5rem;
+            font-size: 1rem;
+            border: 0;
+            border-radius: $border-rounded;
+        }
         .type-filter {
             select {
                 padding: 0 0.8rem;
             }
         }
-        .order-filter{
-
-        }
-        button {
-            //completar en archivo de buttons
-        }
-    }
-    button {
-
-    }
 }
 
+
+@media screen and (max-width: 1000px){
+    .search-line {
+        flex-direction: column;
+    }
+}
