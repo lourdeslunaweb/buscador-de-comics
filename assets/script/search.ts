@@ -22,9 +22,9 @@ const refreshCardTable = (typeUrl: string) => {
     fetch(urlAPI)
         .then(res => res.json())
         .then((json) => {
+            const totalResults = json.data.total? json.data.total : "";
+            results.innerText = `${totalResults} resultados`;
             const comics: Comic[] = json.data.results;
-            console.log(json.data.total);
-            console.log(comics);
             for (const comic of comics) {
                 let thumb = comic.thumbnail ? comic.thumbnail : "";
                 let comicTitle = comic.title ? comic.title : "";
@@ -36,7 +36,7 @@ const refreshCardTable = (typeUrl: string) => {
                     guionist.push(comic.creators.items[prop].name)
                 }
                 let comicCreators = guionist ? guionist : "";
-                let hrefData = `./data.html?title=${comicTitle}&ImgSrc=${thumb.path}.${thumb.extension}&published=${comicDate}&description=${comicDescription}&characters=${comicCharacters}&creator=${comicCreators}`;
+                let hrefData = `./data.html?type=${typeUrl}&title=${comicTitle}&ImgSrc=${thumb.path}.${thumb.extension}&published=${comicDate}&description=${comicDescription}&characters=${comicCharacters}&creator=${comicCreators}`;
                 contentHTML += `
             <div class="card-div">
                 <a href="${hrefData}">
@@ -127,13 +127,13 @@ const sortByAz = (array) => {
 //             let comicTitle = comic.title.toLowerCase();
 //             if (comicTitle.includes(word)) {
 //                 comicsByWord.push(comic)
-//             }                       
-//         } 
+//             }
+//         }
 
 //     }
 //     // console.log(comicsByWord)
 //     refreshBySearch(comicsByWord)
 //     // return comicsByWord
-// }  
+// }
 
 // searchBtn.addEventListener("click",filterByWord);

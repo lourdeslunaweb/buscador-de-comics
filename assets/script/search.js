@@ -21,9 +21,9 @@ var refreshCardTable = function (typeUrl) {
     fetch(urlAPI)
         .then(function (res) { return res.json(); })
         .then(function (json) {
+        var totalResults = json.data.total ? json.data.total : "";
+        results.innerText = totalResults + " resultados";
         var comics = json.data.results;
-        console.log(json.data.total);
-        console.log(comics);
         for (var _i = 0, comics_1 = comics; _i < comics_1.length; _i++) {
             var comic = comics_1[_i];
             var thumb = comic.thumbnail ? comic.thumbnail : "";
@@ -36,7 +36,7 @@ var refreshCardTable = function (typeUrl) {
                 guionist.push(comic.creators.items[prop].name);
             }
             var comicCreators = guionist ? guionist : "";
-            var hrefData = "./data.html?title=" + comicTitle + "&ImgSrc=" + thumb.path + "." + thumb.extension + "&published=" + comicDate + "&description=" + comicDescription + "&characters=" + comicCharacters + "&creator=" + comicCreators;
+            var hrefData = "./data.html?type=" + typeUrl + "&title=" + comicTitle + "&ImgSrc=" + thumb.path + "." + thumb.extension + "&published=" + comicDate + "&description=" + comicDescription + "&characters=" + comicCharacters + "&creator=" + comicCreators;
             contentHTML += "\n            <div class=\"card-div\">\n                <a href=\"" + hrefData + "\">\n                    <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comicTitle + "\"  class=\"card-home\">\n                </a>\n                <h3>" + comicTitle + "</h3>\n            </div>";
         }
         marvelCards.innerHTML = contentHTML;
@@ -111,11 +111,11 @@ var sortByAz = function (array) {
 //             let comicTitle = comic.title.toLowerCase();
 //             if (comicTitle.includes(word)) {
 //                 comicsByWord.push(comic)
-//             }                       
-//         } 
+//             }
+//         }
 //     }
 //     // console.log(comicsByWord)
 //     refreshBySearch(comicsByWord)
 //     // return comicsByWord
-// }  
+// }
 // searchBtn.addEventListener("click",filterByWord);

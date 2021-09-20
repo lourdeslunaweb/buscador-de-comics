@@ -3,14 +3,6 @@
 // hash : 953044dd6187bef3005abdd0e7cf0d93
 var pageNumber = 1;
 var pagination;
-var searchInput = document.getElementById("search-input");
-var typeFilter = document.getElementById("type-filter");
-var results = document.getElementById("results");
-var older = document.getElementById("older");
-var newer = document.getElementById("newer");
-var sortFilter = document.getElementById("sort-filter");
-var searchBtn = document.getElementById("search-button");
-var marvelCards = document.getElementById("marvel-cards");
 var nextBtn = document.getElementById("next-btn");
 var prevBtn = document.getElementById("prev-btn");
 var firstPageBtn = document.getElementById("first-page-btn");
