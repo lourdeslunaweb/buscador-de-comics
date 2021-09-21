@@ -18,34 +18,26 @@ const typeUrl = typeFilter.value;
 let contentHTML = "";
 
 
-const refreshComicTable = (offset: number) => {
+const refreshCardsTable = (offset: number, type: string) => {
     contentHTML ="";
-    const urlAPI = `${baseUrl}comics?ts=1&apikey=${apiKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
+    const urlAPI = `${baseUrl}${type}?ts=1&apikey=${apiKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
     fetch(urlAPI)
         .then(res => res.json())
         .then((json) => {
             const totalResults = json.data.total ? json.data.total : "No hay resultados";
             results.innerText = `${totalResults} resultados`;
-            const comics: Comic[] = json.data.results;
-            // console.log(comics)
-            for (const comic of comics) {
-                let thumb = comic.thumbnail ? comic.thumbnail : "";
-                let comicTitle = comic.title ? comic.title : "Title not available";
-                let comicDescription = comic.description ? comic.description : "Description not available";
-                let comicDate = comic.dates[0].date ? comic.dates[0].date : "Date not available";
-                let comicCharacters = comic.characters.collectionURI ? comic.characters.collectionURI : "";
-                let guionist = [];
-                for (const prop in comic.creators.items) {
-                    guionist.push(comic.creators.items[prop].name)
-                }
-                let comicCreators = guionist ? guionist : "";
-                let hrefData = `./data.html?type='comics'&title=${comicTitle}&ImgSrc=${thumb.path}.${thumb.extension}&published=${comicDate}&description=${comicDescription}&urlForFetch=${comicCharacters}&creator=${comicCreators}`;
+            const cards = json.data.results;
+            console.log(cards)
+            for (const card of cards) {
+                let thumb = card.thumbnail ? card.thumbnail : "";
+                let cardTitle = card.title ? card.title : card.name;
+                let hrefData = `./data.html?type=${type}&id=${card.id}`;
                 contentHTML += `
             <div class="card-div">
                 <a href="${hrefData}">
-                    <img src="${thumb.path}.${thumb.extension}" alt="${comicTitle}"  class="card-home">
+                    <img src="${thumb.path}.${thumb.extension}" alt="${cardTitle}"  class="card-home">
                 </a>
-                <h3>${comicTitle}</h3>
+                <h3>${cardTitle}</h3>
             </div>`;
             }
             marvelCards.innerHTML = contentHTML;
@@ -53,48 +45,18 @@ const refreshComicTable = (offset: number) => {
 }
 
 
-const refreshCharacterTable = (offset: number) => {
-    contentHTML ="";
-    const urlAPI = `${baseUrl}characters?ts=1&apikey=${apiKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
-    fetch(urlAPI)
-        .then(res => res.json())
-        .then((json) => {
-            const totalResults = json.data.total ? json.data.total : "No hay resultados";
-            results.innerText = `${totalResults} resultados`;
-            const characters = json.data.results
-            for (const character of characters) {
-                let thumb = character.thumbnail ? character.thumbnail : "Name not available";
-                let characterName = character.name ? character.name : "";
-                let characterDescription = character.description ? character.description : "Description not available";
-                let comicUrl = character.comics.collectionURI? character.comics.collectionURI : "";
-                let hrefData = `./data.html?type='characters'&title=${characterName}&ImgSrc=${thumb.path}.${thumb.extension}&description=${characterDescription}&urlForFetch=${comicUrl}`;
-                console.log( hrefData)
-                contentHTML += `
-            <div class="card-div">
-                <a href="${hrefData}">
-                    <img src="${thumb.path}.${thumb.extension}" alt="${characterName}"  class="card-home">
-                </a>
-                <h3>${characterName}</h3>
-            </div>`;
-        }
-        marvelCards.innerHTML = contentHTML;
-        });
-}
-
-
-
 const refreshTablesByTypes = (e) => {
     if (typeFilter.value === "comics") {
-        refreshComicTable(offset)
+        refreshCardsTable(offset, "comics")
     } else if (typeFilter.value === "characters") {
-        refreshCharacterTable(offset)
+        refreshCardsTable(offset, "characters")
     }
 }
 
 typeFilter.addEventListener("change", refreshTablesByTypes);
 
 const init = () =>{
-    refreshComicTable(offset);
+    refreshCardsTable(offset, typeFilter.value);
 
 }
 init()

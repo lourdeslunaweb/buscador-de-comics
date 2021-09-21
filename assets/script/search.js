@@ -16,67 +16,37 @@ var searchBtn = document.getElementById("search-button");
 var marvelCards = document.getElementById("marvel-cards");
 var typeUrl = typeFilter.value;
 var contentHTML = "";
-var refreshComicTable = function (offset) {
+var refreshCardsTable = function (offset, type) {
     contentHTML = "";
-    var urlAPI = baseUrl + "comics?ts=1&apikey=" + apiKey + "&hash=" + hash + "&limit=" + limit + "&offset=" + offset;
+    var urlAPI = "" + baseUrl + type + "?ts=1&apikey=" + apiKey + "&hash=" + hash + "&limit=" + limit + "&offset=" + offset;
     fetch(urlAPI)
         .then(function (res) { return res.json(); })
         .then(function (json) {
         var totalResults = json.data.total ? json.data.total : "No hay resultados";
         results.innerText = totalResults + " resultados";
-        var comics = json.data.results;
-        // console.log(comics)
-        for (var _i = 0, comics_1 = comics; _i < comics_1.length; _i++) {
-            var comic = comics_1[_i];
-            var thumb = comic.thumbnail ? comic.thumbnail : "";
-            var comicTitle = comic.title ? comic.title : "Title not available";
-            var comicDescription = comic.description ? comic.description : "Description not available";
-            var comicDate = comic.dates[0].date ? comic.dates[0].date : "Date not available";
-            var comicCharacters = comic.characters.collectionURI ? comic.characters.collectionURI : "";
-            var guionist = [];
-            for (var prop in comic.creators.items) {
-                guionist.push(comic.creators.items[prop].name);
-            }
-            var comicCreators = guionist ? guionist : "";
-            var hrefData = "./data.html?type='comics'&title=" + comicTitle + "&ImgSrc=" + thumb.path + "." + thumb.extension + "&published=" + comicDate + "&description=" + comicDescription + "&urlForFetch=" + comicCharacters + "&creator=" + comicCreators;
-            contentHTML += "\n            <div class=\"card-div\">\n                <a href=\"" + hrefData + "\">\n                    <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + comicTitle + "\"  class=\"card-home\">\n                </a>\n                <h3>" + comicTitle + "</h3>\n            </div>";
-        }
-        marvelCards.innerHTML = contentHTML;
-    });
-};
-var refreshCharacterTable = function (offset) {
-    contentHTML = "";
-    var urlAPI = baseUrl + "characters?ts=1&apikey=" + apiKey + "&hash=" + hash + "&limit=" + limit + "&offset=" + offset;
-    fetch(urlAPI)
-        .then(function (res) { return res.json(); })
-        .then(function (json) {
-        var totalResults = json.data.total ? json.data.total : "No hay resultados";
-        results.innerText = totalResults + " resultados";
-        var characters = json.data.results;
-        for (var _i = 0, characters_1 = characters; _i < characters_1.length; _i++) {
-            var character = characters_1[_i];
-            var thumb = character.thumbnail ? character.thumbnail : "Name not available";
-            var characterName = character.name ? character.name : "";
-            var characterDescription = character.description ? character.description : "Description not available";
-            var comicUrl = character.comics.collectionURI ? character.comics.collectionURI : "";
-            var hrefData = "./data.html?type='characters'&title=" + characterName + "&ImgSrc=" + thumb.path + "." + thumb.extension + "&description=" + characterDescription + "&urlForFetch=" + comicUrl;
-            console.log(hrefData);
-            contentHTML += "\n            <div class=\"card-div\">\n                <a href=\"" + hrefData + "\">\n                    <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + characterName + "\"  class=\"card-home\">\n                </a>\n                <h3>" + characterName + "</h3>\n            </div>";
+        var cards = json.data.results;
+        console.log(cards);
+        for (var _i = 0, cards_1 = cards; _i < cards_1.length; _i++) {
+            var card = cards_1[_i];
+            var thumb = card.thumbnail ? card.thumbnail : "";
+            var cardTitle = card.title ? card.title : card.name;
+            var hrefData = "./data.html?type=" + type + "&id=" + card.id;
+            contentHTML += "\n            <div class=\"card-div\">\n                <a href=\"" + hrefData + "\">\n                    <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + cardTitle + "\"  class=\"card-home\">\n                </a>\n                <h3>" + cardTitle + "</h3>\n            </div>";
         }
         marvelCards.innerHTML = contentHTML;
     });
 };
 var refreshTablesByTypes = function (e) {
     if (typeFilter.value === "comics") {
-        refreshComicTable(offset);
+        refreshCardsTable(offset, "comics");
     }
     else if (typeFilter.value === "characters") {
-        refreshCharacterTable(offset);
+        refreshCardsTable(offset, "characters");
     }
 };
 typeFilter.addEventListener("change", refreshTablesByTypes);
 var init = function () {
-    refreshComicTable(offset);
+    refreshCardsTable(offset, typeFilter.value);
 };
 init();
 // case "a-z":
