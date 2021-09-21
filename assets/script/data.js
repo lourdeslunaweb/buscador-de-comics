@@ -9,7 +9,7 @@ var cardId = params.get('id');
 var cardData = document.getElementById("card-data");
 var subTitleBelow = document.getElementById("subtitle-below");
 var resultsBelow = document.getElementById("results-below");
-var cardsBelow = document.getElementById("cards-below");
+var cardsBelowSection = document.getElementById("cards-below-section");
 var cardHTML;
 var cardsBelowHTML;
 //Fetch for selected Card
@@ -79,18 +79,17 @@ var displayInfoBelow = function (url, type) {
     fetch(urlAPI)
         .then(function (res) { return res.json(); })
         .then(function (json) {
-        var cardsBelow = json.data.results;
-        console.log(cardsBelow);
-        resultsBelow.innerText = cardsBelow.length + " resultados";
-        if (cardsBelow.length > 0) {
-            for (var _i = 0, cardsBelow_1 = cardsBelow; _i < cardsBelow_1.length; _i++) {
-                var card = cardsBelow_1[_i];
+        var cardsBelowData = json.data.results;
+        resultsBelow.innerText = cardsBelowData.length + " resultados";
+        if (cardsBelowData.length > 0) {
+            for (var _i = 0, cardsBelowData_1 = cardsBelowData; _i < cardsBelowData_1.length; _i++) {
+                var card = cardsBelowData_1[_i];
                 var cardTitle = card.title ? card.title : card.name;
                 var thumb = card.thumbnail ? card.thumbnail : "";
                 var hrefData = "./data.html?type=" + type + "&id=" + card.id;
-                cardsBelowHTML += "\n            <div class=\"card-div\">\n                <a href=\"" + hrefData + "\">\n                    <img src=\"" + thumb.path + "." + thumb.extension + "\" alt=\"" + cardTitle + "\"  class=\"card-home\">\n                </a>\n                <h3>" + cardTitle + "</h3>\n            </div>";
+                cardsBelowHTML += "\n                    <div class=\"card-div-below\">\n                    <a href= \"" + hrefData + "\">\n                        <img src= \"" + thumb.path + "." + thumb.extension + "\" alt=\"" + cardTitle + "\" class=\"card-below\">\n                    </a>\n                    <h3>" + cardTitle + "</h3>\n                </div>";
             }
-            cardsBelow.innerHTML = cardsBelowHTML;
+            cardsBelowSection.innerHTML = cardsBelowHTML;
         }
     });
 };

@@ -16,6 +16,20 @@
     }
 }
 
+.card-div-below {
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+    height: 420px;
+    width: 200px;
+    margin-top: $margin-l;
+    @include card-name;
+    overflow: hidden;
+    h3 {
+        margin-top: $margin-s;
+    }
+}
+
 .card-home {
     height: 350px;
     width: 230px;
@@ -23,6 +37,15 @@
     transition: all 0.5s;
     @include card-transition;
 }
+
+.card-below {
+    height: 230px;
+    width: 135px;
+    box-shadow: $box-shadow;
+    transition: all 0.5s;
+    @include card-transition;
+} 
+
 
 .card-data-container {
     @include flex-center;

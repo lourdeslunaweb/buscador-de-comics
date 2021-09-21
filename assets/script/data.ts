@@ -11,7 +11,7 @@ const cardId = params.get('id');
 const cardData = document.getElementById("card-data");
 const subTitleBelow = document.getElementById("subtitle-below");
 const resultsBelow = document.getElementById("results-below");
-const cardsBelow = document.getElementById("cards-below");
+const cardsBelowSection = document.getElementById("cards-below-section");
 let cardHTML;
 let cardsBelowHTML;
 
@@ -96,23 +96,22 @@ const displayInfoBelow = (url: string, type: string) => {
     fetch(urlAPI)
         .then(res => res.json())
         .then((json) => {
-            const cardsBelow = json.data.results;
-            console.log(cardsBelow);
-            resultsBelow.innerText = `${cardsBelow.length} resultados`;
-            if (cardsBelow.length > 0) {
-                for (let card of cardsBelow) {
+            const cardsBelowData = json.data.results;
+            resultsBelow.innerText = `${cardsBelowData.length} resultados`;
+            if (cardsBelowData.length > 0) {
+                for (let card of cardsBelowData) {
                     let cardTitle = card.title ? card.title : card.name;
                     let thumb = card.thumbnail ? card.thumbnail : "";
                     let hrefData = `./data.html?type=${type}&id=${card.id}`;
                     cardsBelowHTML += `
-            <div class="card-div">
-                <a href="${hrefData}">
-                    <img src="${thumb.path}.${thumb.extension}" alt="${cardTitle}"  class="card-home">
-                </a>
-                <h3>${cardTitle}</h3>
-            </div>`;
+                    <div class="card-div-below">
+                    <a href= "${hrefData}">
+                        <img src= "${thumb.path}.${thumb.extension}" alt="${cardTitle}" class="card-below">
+                    </a>
+                    <h3>${cardTitle}</h3>
+                </div>`
                 }
-                cardsBelow.innerHTML = cardsBelowHTML;
+                cardsBelowSection.innerHTML = cardsBelowHTML;
             }
         });
 }

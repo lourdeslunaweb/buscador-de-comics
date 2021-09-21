@@ -52,8 +52,6 @@ const getDataComics = {
             const totalPages = Math.ceil(resNumber / limit);
         })
     }
-               
-
 }
 
 
