@@ -1,53 +1,121 @@
-// *****************************
-// *** Set Variables in Data ***
-// *****************************
+// *******************************************
+// *** Display selected card in data.html ***
+// *******************************************
 
 //Params
 const params = new URLSearchParams(window.location.search);
-const imgSrc = params.get("ImgSrc");
-const title = params.get("title");
-const date = new Date(params.get("published")).toLocaleDateString()? new Date(params.get("published")).toLocaleDateString() :"" ;
-const creator = params.get("creator") ? params.get("creator") : "";
-const description = params.get("description");
-const urlForFetch = params.get("urlForFetch")? params.get("urlForFetch") : "";
-const typeData = params.get("type");
+const typeData = params.get('type');
+const cardId = params.get('id');
+
 //Nodes
-const imgData = document.getElementById("img-data");
-const titleData = document.getElementById("title");
-const dateData = document.getElementById("date-data");
-const creatorData = document.getElementById("creator-data");
-const descriptionData = document.getElementById("description");
+const cardData = document.getElementById("card-data");
 const subTitleBelow = document.getElementById("subtitle-below");
 const resultsBelow = document.getElementById("results-below");
 const cardsBelow = document.getElementById("cards-below");
-let contentCardsBelow ="";
-//Inner HTML and set attribute
-imgData.setAttribute('src', `${imgSrc}`);
-titleData.innerHTML= `${title}`;
-dateData.innerHTML = `${date}`;
-creatorData.innerHTML = `${creator}`;
-descriptionData.innerHTML = `${description}`;
-if (typeData === "comics"){
-    subTitleBelow.innerHTML = "Personajes"
-} else if (typeData === "characters"){
-    subTitleBelow.innerHTML = "Comics"
+let cardHTML;
+let cardsBelowHTML;
+
+//Fetch for selected Card
+const displaySelectedCard = (type: string, id: string) => {
+    cardHTML = "";
+    const urlAPI = `${baseUrl}/${type}/${id}?apikey=${apiKey}`;
+    fetch(urlAPI)
+        .then(res => res.json())
+        .then((json) => {
+            const selectedCard = json.data.results[0];
+            const cardTitle = selectedCard.title ? selectedCard.title : selectedCard.name;
+            const thumb = selectedCard.thumbnail;
+            const cardDescription = selectedCard.description ? selectedCard.description : "Description not available";
+            let auxDate;
+            let cardDate;
+            if (selectedCard.dates) {
+                auxDate = selectedCard.dates[0].date;
+                cardDate = new Date(auxDate).toLocaleDateString();
+            } else {
+                auxDate = "";
+                cardDate = "";
+            }
+            let guionist = [];
+            let comicCreators;
+            if (selectedCard.creators) {
+                for (const prop in selectedCard.creators.items) {
+                    guionist.push(selectedCard.creators.items[prop].name)
+                }
+                comicCreators = guionist;
+            } else {
+                comicCreators = ""
+            }
+            let infoURL;
+            if (selectedCard.characters) {
+                infoURL = selectedCard.characters.collectionURI
+            } else if (selectedCard.comics) {
+                infoURL = selectedCard.comics.collectionURI
+            }
+            let typeBelow;
+            if (type === "comics") {
+                typeBelow = "characters"
+            } else if (type === "characters") {
+                typeBelow = "comics"
+            }
+            displayInfoBelow(infoURL, typeBelow);
+            cardHTML = `
+            <div class="img-data">
+            <img src="${thumb.path}.${thumb.extension}" alt="ComicImg/HeroImg">
+        </div>
+        <div class="text-data">
+            <h3 class="item-data">${cardTitle}</h3>
+            <div class="item-data">
+                <h4>Publicado:</h4>
+                <p>${cardDate}</p>
+            </div>
+            <div class="item-data" id="creator-data">
+                <h4>Guionistas:</h4>
+                <p>${comicCreators}</p>
+            </div>
+            <div class="item-data" id="description">
+                <h4>Descripción:</h4>
+                <p>${cardDescription}</p>
+            </div>
+        </div>`;
+            cardData.innerHTML = cardHTML;
+        });
+}
+displaySelectedCard(typeData, cardId)
+
+// Fetch for infoURL
+const displayInfoBelow = (url: string, type: string) => {
+    cardsBelowHTML = "";
+    let subTitle;
+    if (type === "characters") {
+        subTitle = "Personajes"
+    } else if (type === "comics") {
+        subTitle = "Comics"
+    }
+    subTitleBelow.innerText = subTitle;
+    const urlAPI = `${url}?apikey=${apiKey}`;
+    fetch(urlAPI)
+        .then(res => res.json())
+        .then((json) => {
+            const cardsBelow = json.data.results;
+            console.log(cardsBelow);
+            resultsBelow.innerText = `${cardsBelow.length} resultados`;
+            if (cardsBelow.length > 0) {
+                for (let card of cardsBelow) {
+                    let cardTitle = card.title ? card.title : card.name;
+                    let thumb = card.thumbnail ? card.thumbnail : "";
+                    let hrefData = `./data.html?type=${type}&id=${card.id}`;
+                    cardsBelowHTML += `
+            <div class="card-div">
+                <a href="${hrefData}">
+                    <img src="${thumb.path}.${thumb.extension}" alt="${cardTitle}"  class="card-home">
+                </a>
+                <h3>${cardTitle}</h3>
+            </div>`;
+                }
+                cardsBelow.innerHTML = cardsBelowHTML;
+            }
+        });
 }
 
 
-
-
-// Fetch
-// const urlData = `${charactersUrl}?ts=1&apikey=${apiKey}&hash=${hash}`
-// fetch(urlData)
-//             .then(res => res.json())
-//             .then((characters) => {
-//                 console.log(characters.data)
-//                 const charactersArray = characters.data.results
-//                 console.log(charactersArray.length)
-//                 if (charactersArray.length === 0){
-//                     resultsBelow.innerText ="0 resultados";
-//                     cardsBelow.innerHTML = "<h2> No se han encontrado resultados </h2>"
-//                 } else {
-//                 }
-//         })
 
