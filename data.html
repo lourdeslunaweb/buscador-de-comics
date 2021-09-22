@@ -15,22 +15,24 @@
     <section class="carousel">
         <div class="logo"></div>
     </section>
-    <section class="search-container">
+    <section class="search-box-container">
         <h2>Búsqueda</h2>
         <div class="search-line">
-            <div class="search-box">
-                <input type="text" placeholder="🔍 Ingresá tu búsqueda" aria-placeholder="Ingresá tu búsqueda">
+            <div class="search-text">
+                <input id="search-input" type="text" placeholder="🔍 Ingresá tu búsqueda"
+                    aria-placeholder="Ingresá tu búsqueda">
             </div>
             <div class="type-filter">
                 <label for="" aria-labelledby="Tipo de búsqueda">Tipo</label>
                 <select name="" id="type-filter">
                     <option value="comics">💥Comics</option>
-                    <option value="personajes">🦹Personajes</option>
+                    <option value="characters">🦹Personajes</option>
                 </select>
             </div>
             <div class="order-filter">
                 <label for="" aria-labelledby="Orden de la búsqueda">Orden</label>
                 <select name="" id="sort-filter">
+                    <option value="no-order">Sin ordenar</option>
                     <option value="a-z">A-Z</option>
                     <option value="z-a">Z-A</option>
                     <option value="mas-nuevos" id="newer">Más nuevos</option>
@@ -40,7 +42,9 @@
             <button type="button" class="search-button" id="search-button">Buscar</button>
         </div>
     </section>
-    <button class="search-button"><a href="./index.html">Inicio</a></button>
+    <div class="index-btn-div">
+        <button class="index-button"><a href="./index.html">Inicio</a></button>
+    </div>
     <section id="card-data-container" class="card-data-container">
         <div class="card-data" id="card-data">
         </div>
@@ -51,11 +55,15 @@
     </section>
     <section id="cards-below-section" class="marvel-cards">
     </section>
-    <section id="turn-page" class="turn-page">
-        <button type="button" class="pass-button" id="first-page-btn">⏪</button>
-        <button type="button" class="pass-button" id="prev-btn">◀️</button>
-        <button type="button" class="pass-button" id="next-btn">▶️</button>
-        <button type="button" class="pass-button">⏩</button>
+    <section id="turn-page" class="turn-page-btn">
+        <div class ="backward-btn-div">
+            <button type="button" class="pass-button" id="first-page-btn">⏪</button>
+            <button type="button" class="pass-button" id="prev-btn">◀️</button>
+        </div>
+        <div class ="fordward-btn-div">
+            <button type="button" class="pass-button" id="next-btn">▶️</button>
+            <button type="button" class="pass-button">⏩</button>
+        </div>
     </section>
     <footer>
         <h2>Hecho con 🤍 por:</h2>

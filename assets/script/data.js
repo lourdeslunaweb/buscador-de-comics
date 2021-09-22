@@ -15,7 +15,7 @@ var cardsBelowHTML;
 //Fetch for selected Card
 var displaySelectedCard = function (type, id) {
     cardHTML = "";
-    var urlAPI = baseUrl + "/" + type + "/" + id + "?apikey=" + apiKey;
+    var urlAPI = baseUrl + "/" + type + "/" + id + "?apikey=" + apiKey + "&hash=" + hash;
     fetch(urlAPI)
         .then(function (res) { return res.json(); })
         .then(function (json) {
@@ -75,7 +75,7 @@ var displayInfoBelow = function (url, type) {
         subTitle = "Comics";
     }
     subTitleBelow.innerText = subTitle;
-    var urlAPI = url + "?apikey=" + apiKey;
+    var urlAPI = url + "?apikey=" + apiKey + "&hash=" + hash;
     fetch(urlAPI)
         .then(function (res) { return res.json(); })
         .then(function (json) {
@@ -87,7 +87,7 @@ var displayInfoBelow = function (url, type) {
                 var cardTitle = card.title ? card.title : card.name;
                 var thumb = card.thumbnail ? card.thumbnail : "";
                 var hrefData = "./data.html?type=" + type + "&id=" + card.id;
-                cardsBelowHTML += "\n                    <div class=\"card-div-below\">\n                    <a href= \"" + hrefData + "\">\n                        <img src= \"" + thumb.path + "." + thumb.extension + "\" alt=\"" + cardTitle + "\" class=\"card-below\">\n                    </a>\n                    <h3>" + cardTitle + "</h3>\n                </div>";
+                cardsBelowHTML += "\n                    <div class=\"card-div-below\">\n                    <a href= \"" + hrefData + "\">\n                        <img src= \"" + thumb.path + "." + thumb.extension + "\" alt=\"" + cardTitle + "\" class=\"card-below\">\n                    </a>\n                    <h4>" + cardTitle + "</h4>\n                </div>";
             }
             cardsBelowSection.innerHTML = cardsBelowHTML;
         }
