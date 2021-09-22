@@ -18,7 +18,7 @@ let cardsBelowHTML;
 //Fetch for selected Card
 const displaySelectedCard = (type: string, id: string) => {
     cardHTML = "";
-    const urlAPI = `${baseUrl}/${type}/${id}?apikey=${apiKey}`;
+    const urlAPI = `${baseUrl}/${type}/${id}?apikey=${apiKey}&hash=${hash}`;
     fetch(urlAPI)
         .then(res => res.json())
         .then((json) => {
@@ -92,7 +92,7 @@ const displayInfoBelow = (url: string, type: string) => {
         subTitle = "Comics"
     }
     subTitleBelow.innerText = subTitle;
-    const urlAPI = `${url}?apikey=${apiKey}`;
+    const urlAPI = `${url}?apikey=${apiKey}&hash=${hash}`;
     fetch(urlAPI)
         .then(res => res.json())
         .then((json) => {
@@ -108,7 +108,7 @@ const displayInfoBelow = (url: string, type: string) => {
                     <a href= "${hrefData}">
                         <img src= "${thumb.path}.${thumb.extension}" alt="${cardTitle}" class="card-below">
                     </a>
-                    <h3>${cardTitle}</h3>
+                    <h4>${cardTitle}</h4>
                 </div>`
                 }
                 cardsBelowSection.innerHTML = cardsBelowHTML;

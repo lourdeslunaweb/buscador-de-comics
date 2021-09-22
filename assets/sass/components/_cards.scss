@@ -17,16 +17,14 @@
 }
 
 .card-div-below {
-    @include flex-center;
-    flex-direction: column;
     text-align: center;
-    height: 420px;
-    width: 200px;
+    height: 300px;
+    width: 250px;
     margin-top: $margin-l;
     @include card-name;
     overflow: hidden;
-    h3 {
-        margin-top: $margin-s;
+    h4 {
+        margin-top: $margin-m;
     }
 }
 
@@ -40,11 +38,22 @@
 
 .card-below {
     height: 230px;
-    width: 135px;
+    width: 160px;
     box-shadow: $box-shadow;
     transition: all 0.5s;
     @include card-transition;
 } 
+
+@media screen and (max-width: 500px) {
+    .card-div-below {
+        height: 230px;
+        width: 180px;
+    }
+    .card-below {
+        height: 160px;
+        width: 110px;
+    } 
+}
 
 
 .card-data-container {
