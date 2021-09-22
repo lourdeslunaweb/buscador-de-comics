@@ -25,7 +25,6 @@ var refreshCardsTable = function (offset, type) {
         var totalResults = json.data.total ? json.data.total : "No hay resultados";
         results.innerText = totalResults + " resultados";
         var cards = json.data.results;
-        console.log(cards);
         for (var _i = 0, cards_1 = cards; _i < cards_1.length; _i++) {
             var card = cards_1[_i];
             var thumb = card.thumbnail ? card.thumbnail : "";

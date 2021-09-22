@@ -27,7 +27,6 @@ const refreshCardsTable = (offset: number, type: string) => {
             const totalResults = json.data.total ? json.data.total : "No hay resultados";
             results.innerText = `${totalResults} resultados`;
             const cards = json.data.results;
-            console.log(cards)
             for (const card of cards) {
                 let thumb = card.thumbnail ? card.thumbnail : "";
                 let cardTitle = card.title ? card.title : card.name;
